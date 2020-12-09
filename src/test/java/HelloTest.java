@@ -2,11 +2,14 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
+@DisplayName("Day 1 Hello Test")
 public class HelloTest {
 
     //Junit5 Annotation
     // @BeforeAll @AfterAll @BeforeEach @AfterEach
+    //@DisplayName() @Disabled
+
+
 
     @BeforeAll
     public static void setUp(){
@@ -27,13 +30,14 @@ public class HelloTest {
         System.out.println("@AfterEach is running");
     }
 
-
+    @DisplayName("Test 1+3=4")
     @Test
     public void test(){
         Assertions.assertEquals(4,3+1);
         System.out.println("Test1 is running");
     }
-
+    @Disabled
+    @DisplayName("Test 3*4=12")
     @Test
     public void test2(){
         //assert  4 time 3 is 12
