@@ -56,9 +56,24 @@ public class SpartanTest {
        when()
                .get("http://34.207.224.251:8000/api/spartans") .
        then()
+//               .assertThat()  // this is not required, but can be added to make it obvious that this is were we start assertions
                .statusCode(200)
+//               .and() //this is not required at all, just for readability, optional
                .header("Content-Type","application/xml") ;
 
+
+       //this will do same exact things as above in slightly different way
+       //since
+
+       given()
+                .accept(ContentType.XML).
+       when()
+               .get("http://34.207.224.251:8000/api/spartans") .
+       then()
+               .assertThat()
+               .statusCode(is(200))
+               .and()
+               .contentType(ContentType.XML) ;
 
     }
 
