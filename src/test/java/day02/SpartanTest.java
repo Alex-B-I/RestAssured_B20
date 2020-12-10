@@ -63,8 +63,16 @@ public class SpartanTest {
 
 
        //this will do same exact things as above in slightly different way
-       //since
+       //since accept header and content type header is so common, RestAssured
+       //has good support or those header by providing method directly rather than using header method we used above
 
+        /*
+        You are hungry for a burger.
+you send a request to your waiter saying "I'm sending "Content-type" burger and burger only"
+the waiter gives you a respond with ACCEPT burger.
+accept header ---> for response, saying you can accept this data as XML or Json  (to receive request)
+Content-Type --->  you are telling postman what kind of data you are sending.  (to send request)
+         */
        given()
                 .accept(ContentType.XML).
        when()
