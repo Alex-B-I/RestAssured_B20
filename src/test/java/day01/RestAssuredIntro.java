@@ -1,5 +1,6 @@
 package day01;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Disabled;
@@ -49,6 +50,19 @@ public class RestAssuredIntro {
         //assertThat Content-Type is text/plain;charset=UTF-8
         assertThat(response.contentType(),is ("text/plain;charset=UTF-8"));
         assertThat(response.contentType(), containsString("text/plain"));
+
+        // assert That Content-Type startWith text
+        assertThat(response.contentType(),startsWith("text"));
+
+        // Easy way to work with Content-type without typing much
+        // We can use ContentType Enum from RestAssured to easily get main part content-type
+        // ContentType.TEXT -->> text/plain as Enum
+        // startWith accept a String object
+        // so use toString method to turn ContentType.TEXT to String so we can use it startWith
+        assertThat(response.contentType(),startsWith(""+ContentType.TEXT));
+        assertThat(response.contentType(),startsWith(ContentType.TEXT.toString()));
+
+        assertThat(response.contentType(),is(not(ContentType.JSON)));
 
 
 
