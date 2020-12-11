@@ -1,5 +1,6 @@
 package day01;
 
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.hamcrest.Matchers;
@@ -27,7 +28,8 @@ public class RestAssuredIntro {
         // import io.restassured.response.Response;
 
        // Response response =  get("http://100.26.101.158:8000/api/hello") ;
-        Response response =  get("http://34.207.224.251:8000/api/hello") ;
+        Response response = get("http://34.207.224.251:8000/api/hello") ;
+       // RestAssured.get("http://34.207.224.251:8000/api/hello") ; //!!! alt+enter+enter-->> generate Response response
         // get status code out of this Response object
         System.out.println("status code is : " + response.statusCode()  );
 
@@ -64,6 +66,9 @@ public class RestAssuredIntro {
 
         assertThat(response.contentType(),is(not(ContentType.JSON)));
 
+//==========================================================short video===========================
+        Response response1 = get("http://34.207.224.251:8000/api/spartans");
+        assertThat(response1.body().asString(), is(containsStringIgnoringCase("Ervin")));
 
 
     }
