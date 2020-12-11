@@ -4,6 +4,9 @@ import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.*;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+
+import java.util.List;
+
 import static io.restassured.RestAssured.* ;
 import static org.hamcrest.Matchers.* ;
 
@@ -69,7 +72,21 @@ public class JsonPathIntro {
         // get the 7th json object gender field from json array
         System.out.println("jp.getString(\"gender[6]\") = " + jp.getString("gender[6]"));
 
+        //getting all the name fields from the jsonArray Response
+        //and storing as a list
+        List<String> allNames = jp.getList("name");
+        System.out.println("allNames = " + allNames);
+
+        //getting all the phone fields from the jsonArray Response
+        //and storing as a list
+        List<Long> allPhones = jp.getList("phone");
+        System.out.println("allPhones = " + allPhones);
+
 
     }
+
+
+
+
 
 }
