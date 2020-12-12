@@ -72,6 +72,10 @@ public class JsonPathIntro {
         // get the 7th json object gender field from json array
         System.out.println("jp.getString(\"gender[6]\") = " + jp.getString("gender[6]"));
 
+        //get the last json object name field and phone field;
+        System.out.println("jp.getString(\"name[-1]\") = " + jp.getString("name[-1]"));
+
+
         //getting all the name fields from the jsonArray Response
         //and storing as a list
         List<String> allNames = jp.getList("name");
@@ -84,6 +88,37 @@ public class JsonPathIntro {
 
 
     }
+
+    // send request to this request url
+    // http://100.26.101.158:8000/api/spartans/search?nameContains=de&gender=Male
+    // get the name of first guy in the result
+    // get the phone of 3rd guy in the result
+    // get all names , all phones save it as list
+    // save the value of field called empty under pageable in the response
+    // print it out
+    @DisplayName("Testing /spartans/search and extracting data")
+    @Test
+    public void testSearch(){
+
+        JsonPath jp = given()
+                .queryParam("nameContains","de")
+                .queryParam("gender","Male").
+                        when()
+                .get("/spartans/search")
+                .jsonPath();
+
+        System.out.println("first guy name " +
+                jp.getString("content[0].name")    );
+        System.out.println("third guy name " +
+                jp.getString("content[2].name")    );
+
+        System.out.println("allNames "+jp.getList("content.name"));
+        System.out.println("allPhones "+jp.getList("content.phone"));
+
+        System.out.println("value of field empty " + jp.getBoolean("pageable.sort.empty"));
+
+    }
+
 
 
 
