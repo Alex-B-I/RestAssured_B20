@@ -57,6 +57,24 @@ public class SpartanUpdatingTest {
         // update the name to B20 Patched
         // {"name" : "B20 Patched"}
         String patchBody = "{\"name\" : \"B20 Patched\"}";
+
+        given()
+                .auth().basic("admin","admin")
+                .log().all()
+                .contentType(ContentType.JSON)
+                .pathParam("id",10)
+                .body(patchBody).
+        when()
+                .patch("/spartans/{id}").
+        then()
+                .log().all()
+                .assertThat()
+                .statusCode( is(204))
+                .body( emptyString() ) ;
+
+
+
+
     }
 
 }
