@@ -43,12 +43,14 @@ public class ExtractPractice {
         // compare those 2
 
    JsonPath jp = given()
+                .log().all()
                 .auth().basic("admin","admin")
                 .queryParam("nameContains", "a")
                 .queryParam("gender", "Female").
         when()
                 .get("spartans/search").
         then()
+                .log().all()
                 .assertThat()
                 .statusCode(is(200))
                 .extract()
@@ -65,6 +67,10 @@ public class ExtractPractice {
         System.out.println("numOfElements = " + numOfElements);
         // verifying the numOfElements match the size of list we got
         assertThat (numOfElements, equalTo(allNames.size()));
+
+        //using hamcrest matcher collection support for asserting the list size
+        assertThat(allNames,hasSize(numOfElements));
+
     }
 
 }
