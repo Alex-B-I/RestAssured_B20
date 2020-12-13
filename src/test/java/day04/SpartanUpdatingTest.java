@@ -72,9 +72,24 @@ public class SpartanUpdatingTest {
                 .statusCode( is(204))
                 .body( emptyString() ) ;
 
-
-
-
     }
+
+    @DisplayName("Testing Delete /api/spartans/{id}")
+    @Test
+    public void testDeletingSingleSpartan(){
+        given()
+                .log().all()
+                .auth().basic("admin","admin")
+                .pathParam("id",10).
+        when()
+                .delete("/spartans/{id}").
+        then()
+                .log().all()
+                .assertThat()
+                .statusCode(is(204) )
+                .body( emptyString() )  ;
+    }
+
+
 
 }
