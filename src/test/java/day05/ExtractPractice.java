@@ -57,11 +57,14 @@ public class ExtractPractice {
         
         List<String> allNames = jp.getList("content.name");
         System.out.println("allNames = " + allNames);
-        
+
+        // we are getting numberOfElements field from json result
+        // since it's a top level key , json path will be just numberOfElements
+
         int numOfElements = jp.getInt("numberOfElements");
         System.out.println("numOfElements = " + numOfElements);
-
-        assertThat (numOfElements+1, equalTo(allNames.size()));
+        // verifying the numOfElements match the size of list we got
+        assertThat (numOfElements, equalTo(allNames.size()));
     }
 
 }
