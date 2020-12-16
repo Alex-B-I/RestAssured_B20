@@ -7,11 +7,12 @@ package pojo;
 // public no arg constructor
 
 public class Spartan {
+
     private String name;
     private String gender;
-    private long phone;
+    private long phone ;
 
-    public Spartan (){
+    public Spartan(){
 
     }
 
