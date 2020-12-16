@@ -6,8 +6,11 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pojo.Spartan;
+import pojo.SpartanRead;
 import utility.ConfigurationReader;
 
+import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.*;
@@ -37,6 +40,9 @@ public class JsonToJavaObject {
         JsonPath jp = response.jsonPath();
         Map<String,Object> responseMap =  jp.getMap("") ;
         System.out.println("responseMap = " + responseMap);
+        SpartanRead sp = jp.getObject("",SpartanRead.class);
+        System.out.println("sp = " + sp);
+        
 
         /**
          * {
@@ -63,5 +69,21 @@ public class JsonToJavaObject {
          *
          */
     }
+
+    @DisplayName("Get All Data and Save Response JsonArray As Java Object")
+    @Test
+    public void getOneSpartanAndSaveResponseJsonAsJavaObject(){
+        Response response = given()
+                      .auth().basic("admin","admin").
+                when()
+                     .get("/spartans");
+        JsonPath jp = response.jsonPath();
+
+        List<SpartanRead> allSpartanPOJOs = jp.getList("",SpartanRead.class);
+       // System.out.println("allSpartanPOJOs = " + allSpartanPOJOs);
+       allSpartanPOJOs.forEach(System.out::println);
+        
+    }
+    
 
 }
