@@ -84,6 +84,8 @@ public class JsonToJavaObject {
        allSpartanPOJOs.forEach(System.out::println);
         
     }
-    
+    // Send request to /api/spartans/search endpoint
+    // save your jsonArray from search result into
+    // List of SpartanRead POJO
 
 }
