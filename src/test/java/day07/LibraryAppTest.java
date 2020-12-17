@@ -122,6 +122,16 @@ public class LibraryAppTest {
         List<BookCategory> allCategories = jp.getList("" , BookCategory.class) ;
         allCategories.forEach(System.out::println);
 
+        // without using above List
+        //use jsonPAth to get number 5 item in jsonArray
+        //and save it as BookCategory Object
+
+        BookCategory num5BC = jp.getObject("[4]", BookCategory.class) ;
+        System.out.println("num5BC = " + num5BC);
+
+
+
+
     }
 
 
