@@ -3,7 +3,9 @@ package day07;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.*;
+import pojo.BookCategory;
 
+import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.*;
@@ -110,12 +112,16 @@ public class LibraryAppTest {
     @DisplayName("4. Save /get_book_categories response as POJO")
     @Test
     public void testGetBookCategoriesAsPOJO(){
+
         JsonPath jp = given()
                 .log().all()
                 .header("x-library-token",myToken).
                         when()
                 .get(" /get_book_categories").prettyPeek()
                 .jsonPath();
+        List<BookCategory> allCategories = jp.getList("" , BookCategory.class) ;
+        allCategories.forEach(System.out::println);
+
     }
 
 
