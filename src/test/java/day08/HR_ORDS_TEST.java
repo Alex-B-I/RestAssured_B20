@@ -7,6 +7,7 @@ import org.junit.jupiter.api.*;
 import pojo.BookCategory;
 import pojo.Country;
 import pojo.Region;
+import testbase.HR_ORDS_TestBAse;
 
 import java.util.List;
 import java.util.Map;
@@ -19,19 +20,8 @@ import static io.restassured.RestAssured.*;
 
 import static io.restassured.RestAssured.*;
 
-public class HR_ORDS_TEST {
+public class HR_ORDS_TEST extends HR_ORDS_TestBAse {
 
-    //http://54.90.101.103:1000/ords/hr/regions/3
-    @BeforeAll
-    public static void setUp(){
-        baseURI = "http://54.90.101.103:1000";
-        basePath = "/ords/hr" ;
-    }
-
-    @AfterAll
-    public static void tearDown(){
-        reset();
-    }
 
     @DisplayName("Test GET / countries/ {country_id} to POJO")
     @Test
