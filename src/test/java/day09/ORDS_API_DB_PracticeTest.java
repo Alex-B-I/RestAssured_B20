@@ -7,6 +7,8 @@ import testbase.HR_ORDS_TestBAse;
 import utility.DB_Utility;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+
+import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.*;
@@ -20,10 +22,10 @@ public class ORDS_API_DB_PracticeTest extends HR_ORDS_TestBAse {
         String myCountryID = "AR";
         // send request to /countries/{country_id} for AR
         // save the result as Country POJO
-         Country arPOJO = given()
+         Country arPOJO = given().log().ifValidationFails()
                         .pathParam("country_id", myCountryID).
                       when()
-                         .get("/countries/{country_id}")
+                         .get("/countries/{country_id}").prettyPeek()
                          .as(Country.class) ;
         // here the shorter way of above code
        //  Country arPOJO1 = get("/countries/{country_id}",myCountryId).as(Country.class);
@@ -43,6 +45,24 @@ public class ORDS_API_DB_PracticeTest extends HR_ORDS_TestBAse {
         assertThat(arPOJO.getRegion_id(), equalTo(expectedRegionId));
 
     }
+    @DisplayName("GET /countries Capture All CountryID and Compare Result with DB")
+    @Test
+    public void testResponseAllCountryIDsMatchDatabaseData(){
+
+        List <String> allCountriesIds = get("/countries").jsonPath().getList("items.country_id");
+        allCountriesIds.forEach(System.out::println);
+
+        System.out.println("==========================================");
+        DB_Utility.runQuery("SELECT * FROM COUNTRIES");
+        List<String> expectedListFromDB = DB_Utility.getColumnDataAsList("COUNTRY_ID");
+        expectedListFromDB.forEach(System.out::println);
+
+        //assert both list has same information
+        assertThat(allCountriesIds,equalTo(expectedListFromDB));
+
+    }
+
+
 
 
 }
