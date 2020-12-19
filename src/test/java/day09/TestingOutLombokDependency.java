@@ -53,6 +53,21 @@ public class TestingOutLombokDependency extends HR_ORDS_TestBAse {
         // -->> items.findAll {it.manager_id>0 }.department_name (filtered for manager_id more than 0)
         List<String> depNamesFiltered = jp.getList("items.findAll {it.manager_id>0 }.department_name") ;
         System.out.println("depNamesFiltered = " + depNamesFiltered);
+
+
+// Get all departments ID if its more than 70
+        List<Integer> allDepIds = jp.getList("items.department_id") ;
+        System.out.println("allDepIds = " + allDepIds);
+        List<Integer> allDepIdsFiltered =
+                jp.getList("items.department_id.findAll{ it > 70 } ") ;
+        System.out.println("allDepIdsFiltered = " + allDepIdsFiltered);
+// what if we have more than one condition for example : department_id between 70 - 100
+        List<Integer> deps70to100 =
+                jp.getList("items.department_id.findAll{ it >= 70 && it <= 100  }") ;
+        System.out.println("deps70to100 = " + deps70to100);
+// get the name of departments if department_id between 70 - 100
+
+
     }
 
 }
