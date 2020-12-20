@@ -1,30 +1,21 @@
 package day08;
 
-import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
-import pojo.BookCategory;
-import pojo.Country;
 import pojo.Region;
-import testbase.HR_ORDS_TestBAse;
+import testbase.HR_ORDS_TestBase;
 import utility.DB_Utility;
 
-import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
-import static io.restassured.RestAssured.*;
 
-
-import static io.restassured.RestAssured.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
-public class ORDS_API_DB_Test extends HR_ORDS_TestBAse {
+public class ORDS_API_DB_Test extends HR_ORDS_TestBase {
 
     @DisplayName("Testing the connection with query")
     @Test

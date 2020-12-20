@@ -7,7 +7,7 @@ import utility.DB_Utility;
 
 import static io.restassured.RestAssured.*;
 
-public abstract class HR_ORDS_TestBAse {
+public abstract class HR_ORDS_TestBase {
 
 
     @BeforeAll

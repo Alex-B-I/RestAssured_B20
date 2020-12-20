@@ -3,7 +3,7 @@ package day09;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pojo.Country;
-import testbase.HR_ORDS_TestBAse;
+import testbase.HR_ORDS_TestBase;
 import utility.DB_Utility;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.*;
 
-public class ORDS_API_DB_PracticeTest extends HR_ORDS_TestBAse {
+public class ORDS_API_DB_PracticeTest extends HR_ORDS_TestBase {
 
     @DisplayName("GET /countries/{country_id}")
     @Test

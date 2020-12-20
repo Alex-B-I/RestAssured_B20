@@ -1,26 +1,15 @@
 package day08;
 
-import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
-import pojo.BookCategory;
 import pojo.Country;
-import pojo.Region;
-import testbase.HR_ORDS_TestBAse;
+import testbase.HR_ORDS_TestBase;
 
 import java.util.List;
-import java.util.Map;
-
-import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
 
 import static io.restassured.RestAssured.*;
 
-
-import static io.restassured.RestAssured.*;
-
-public class HR_ORDS_TEST extends HR_ORDS_TestBAse {
+public class HR_ORDS_TEST extends HR_ORDS_TestBase {
 
 
     @DisplayName("Test GET / countries/ {country_id} to POJO")
