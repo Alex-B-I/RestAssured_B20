@@ -10,6 +10,8 @@ import pojo.Spartan;
 import utility.ConfigurationReader;
 import utility.SpartanUtil;
 
+import java.util.concurrent.TimeUnit;
+
 import static io.restassured.RestAssured.* ;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.* ;
@@ -102,6 +104,19 @@ public class SpartanWithReusableSpecForAdminRoleTest {
                 then()
                 .spec(thenSpec)
         ;
+    }
+
+    @DisplayName("GET /api/spartans check response time < 2 second")
+    @Test
+    public void testResponseTime(){
+        given()
+                .spec(givenSpec).
+        when()
+                .get("/spartans").
+        then()
+                .spec(thenSpec)
+                .time(lessThan(2000L) )
+                .time(lessThan(2L), TimeUnit.SECONDS);
     }
 
 }
