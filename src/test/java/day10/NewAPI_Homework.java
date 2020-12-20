@@ -2,6 +2,7 @@ package day10;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pojo.ArticlePOJO;
 import pojo.Country;
 import testbase.HR_ORDS_TestBase;
 import utility.DB_Utility;
@@ -44,5 +45,11 @@ public class NewAPI_Homework {
                 jp.getList("articles.findAll{ it.source.id != null && it.author!=null }.author"  ) ;
         System.out.println("allAuthorsWithNoNull = " + allAuthorsWithNoNull);
         System.out.println("allAuthorsWithNoNull.size() = " + allAuthorsWithNoNull.size());
+
+
+        List<ArticlePOJO> allArticles
+                = jp.getList("articles.findAll{ it.source.id != null && it.author!=null }",ArticlePOJO.class) ;
+        allArticles.forEach(System.out::println);
+
     }
 }
