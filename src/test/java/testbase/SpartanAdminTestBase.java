@@ -8,7 +8,7 @@ import static io.restassured.RestAssured.*;
 
 public class SpartanAdminTestBase {
 
-    static RequestSpecification adminReqSpec ;
+    public static RequestSpecification adminReqSpec ;
 
     @BeforeAll
     public static void setUp() {
