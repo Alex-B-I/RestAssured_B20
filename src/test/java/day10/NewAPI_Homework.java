@@ -21,7 +21,8 @@ public class NewAPI_Homework {
                         .log().uri()
                         .baseUri("http://newsapi.org")
                         .basePath("/v2")
-                        .queryParam("apiKey","d39d53da33db434791d77f7b58658007")
+                        .header("Authorization","Bearer 03e75cdc200c4f27a77f9b1473bbde8d")
+                        //.queryParam("apiKey","d39d53da33db434791d77f7b58658007")
                         .queryParam("country","us").
                         when()
                         .get("/top-headlines").prettyPeek()
