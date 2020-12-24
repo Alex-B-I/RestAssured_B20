@@ -53,15 +53,34 @@ public class Test_XML_ElementAttributes {
     @Test
     public void testDrivers(){
 
+        String driverId=
+
         given()
                 .baseUri("http://ergast.com")
                 .basePath("/api/f1").
         when()
                 .get("/drivers").
         then()
-                .statusCode(200);
+                .log().all()
+                .statusCode(200)
+                .body("MRData.DriverTable.Driver[0].@driverId",is("abate"))
+                .body("MRData.DriverTable.Driver[0].GivenName",is("Carlo"))
+                .extract()
+                .xmlPath()
+                .getString("MRData.DriverTable.Driver[0].@driverId");
+
+        // Send a request to GET /drivers/:driverId endpoint using above driver id
 
 
 
+        given()
+                .baseUri("http://ergast.com")
+                .basePath("/api/f1")
+                .pathParam("driverId",driverId).
+        when()
+                .get("/drivers/{driverId}").
+        then()
+                .statusCode(200)
+                .body("MRData.DriverTable.Driver.GivenName",is("Carlo") ) ;
     }
 }
